@@ -11,7 +11,7 @@ void setup() {
 }
 
 void loop() {
-  // Leer el estado del botón
+
   buttonState = digitalRead(BUTTON_PIN);
 
 
