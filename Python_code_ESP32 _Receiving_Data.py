@@ -24,21 +24,33 @@ gx_values = []
 gy_values = []
 gz_values = []
 temp_values = []
-
+print("Codigo de Recepcion -> Iniciado")
 while True:
-    data, addr = sock.recvfrom(1024)
-    values = data.decode().split(',')
+    
+    ##print("Intentando Recibir")
+    
+    data = sock.recv(1024)
+    if data:
+        #print("Recibido de: ",addr)
+        values = data.decode().split(',')
 
-    time_values.append(datetime.datetime.strptime(values[0], "%Y-%m-%d %H:%M:%S"))
-    ax_values.append(float(values[1]))
-    ay_values.append(float(values[2]))
-    az_values.append(float(values[3]))
-    gx_values.append(float(values[4]))
-    gy_values.append(float(values[5]))
-    gz_values.append(float(values[6]))
-    temp_values.append(float(values[7]))
+        time_values.append(datetime.datetime.strptime(values[0], "%Y-%m-%d %H:%M:%S"))
+        ax_values.append(float(values[1]))
+        ay_values.append(float(values[2]))
+        az_values.append(float(values[3]))
+        gx_values.append(float(values[4]))
+        gy_values.append(float(values[5]))
+        gz_values.append(float(values[6]))
+        temp_values.append(float(values[7]))
 
 
-    print(time_values[-1], ax_values[-1], ay_values[-1], az_values[-1], 
-          gx_values[-1], gy_values[-1], gz_values[-1], temp_values[-1])
+        print(time_values[-1], ax_values[-1], ay_values[-1], az_values[-1], 
+            gx_values[-1], gy_values[-1], gz_values[-1], temp_values[-1])
+        
+    else:
+        print("Recepcion Fallida")
+        break
+    
+
+    
     
